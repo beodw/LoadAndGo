@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'ui/layouts/web_layout/base_web_layout.dart';
 import 'ui/layouts/mobile_layout/base_mobile_layout.dart';
 import 'config/app_settings.dart';
+import 'config/palette.dart';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
@@ -12,10 +13,15 @@ class App extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: debugModeSetting,
       title: 'Load and Go',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const Scaffold(
+      theme: appTheme,
+      home: Scaffold(
+        drawer: Drawer(
+          child: ListView.builder(
+              itemCount: 2,
+              itemBuilder: (context, index) {
+                return Text('s');
+              }),
+        ),
         body: kIsWeb ? BaseWebLayout() : BaseMobileLayout(),
       ),
     );

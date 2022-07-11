@@ -21,7 +21,7 @@ class BaseWebLayout extends StatelessWidget {
             ],
           ),
         ),
-        const Positioned(left: 0, child: SideBar()),
+        const SideBar(),
       ],
     );
   }
