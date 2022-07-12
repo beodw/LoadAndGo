@@ -1,9 +1,12 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'ui/layouts/web_layout/base_web_layout.dart';
 import 'ui/layouts/mobile_layout/base_mobile_layout.dart';
 import 'config/app_settings.dart';
 import 'config/palette.dart';
+import 'cubit/routes_cubit.dart';
+import 'cubit/operational_flow_cubit.dart';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
@@ -15,14 +18,18 @@ class App extends StatelessWidget {
       title: 'Load and Go',
       theme: appTheme,
       home: Scaffold(
-        drawer: Drawer(
-          child: ListView.builder(
-              itemCount: 2,
-              itemBuilder: (context, index) {
-                return Text('s');
-              }),
+        body: MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) =>
+                  RoutesCubit(currentRoute: '/orders')..getRoute(),
+            ),
+            BlocProvider(
+              create: (context) => OperationalFlowCubit(),
+            )
+          ],
+          child: kIsWeb ? const BaseWebLayout() : const BaseMobileLayout(),
         ),
-        body: kIsWeb ? BaseWebLayout() : BaseMobileLayout(),
       ),
     );
   }

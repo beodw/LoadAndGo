@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lng/cubit/routes_cubit.dart';
 import 'side_bar_tile.dart';
 import 'side_bar_toggle_button.dart';
 import '../../../config/palette.dart';
@@ -16,37 +17,26 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin {
   double sideBarFraction = 9;
   Duration animationDuration = const Duration(milliseconds: 150);
 
-  Timer newTimer() {
-    return Timer(const Duration(seconds: 2), () {
-      setState(() {
-        sideBarFraction = 3;
-      });
-    });
-  }
-
-  @override
-  void initState() {
-    // Timer timer = newTimer();
-
-    super.initState();
-  }
-
   int selectedIndex = 5;
+  String? currentRoute;
+
   final List<Map> pages = [
     {
       'title': 'Dashboard',
       'icon': Icons.dashboard_outlined,
-      'selected_icon': Icons.dashboard
+      'selected_icon': Icons.dashboard,
+      'url': '/dashboard'
     },
     {
-      'title': 'Routed',
+      'title': 'Assigned Orders',
       'icon': Icons.format_shapes,
-      'selected_icon': Icons.dashboard_outlined
+      'selected_icon': Icons.dashboard_outlined,
+      'url': '/assigned_orders'
     },
-    {'title': 'Teams', 'icon': Icons.people_outlined},
-    {'title': 'Fleet', 'icon': Icons.local_shipping_sharp},
-    {'title': 'Merchants', 'icon': Icons.storefront_sharp},
-    {'title': 'Orders', 'icon': Icons.pin_drop_sharp},
+    {'title': 'Teams', 'icon': Icons.people_outlined, 'url': '/teams'},
+    {'title': 'Fleet', 'icon': Icons.local_shipping_sharp, 'url': '/fleet'},
+    {'title': 'Merchants', 'icon': Icons.storefront_sharp, 'url': '/merchants'},
+    {'title': 'Orders', 'icon': Icons.pin_drop_sharp, 'url': '/orders'},
   ];
 
   @override
@@ -112,7 +102,6 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin {
                       child: const CircleAvatar(
                         foregroundImage:
                             AssetImage('images/cool_profile_pic.jpeg'),
-                        // backgroundColor: Colors.blue,
                       ),
                     ),
                     ListView.builder(
@@ -123,9 +112,14 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin {
                             isSelected: index == selectedIndex,
                             icon: pages[index]['icon'],
                             onPressed: () {
+                              // set state on sidebar selectedIndex to change selected button
                               setState(() {
                                 selectedIndex = index;
                               });
+                              // set url on routes cubit to render new page
+                              context
+                                  .read<RoutesCubit>()
+                                  .setRoute(pages[index]['url']);
                             },
                             title: pages[index]['title'],
                             sideBarIsOpen: isOpen);
