@@ -1,6 +1,6 @@
 {
     "orders": {
-        "1":{
+        "1": {
             "merchant": "Water Bottle Seller",
             "lat": 1.289440,
             "lon": 103.849980,
@@ -8,13 +8,13 @@
             "stage": "to_warehouse",
             "address": "123 maple ave"
         },
-        "2":{
+        "2": {
             "merchant": "orderB",
             "lat": 1.3311606377711733,
             "lon": 103.7033139540567,
             "operationalFlow": "pick_up_dispatch_and_delivery",
             "stage": "to_delivery",
-            "address" : "231 hill side road"
+            "address": "231 hill side road"
         },
         "3": {
             "merchant": "orderC",
@@ -22,8 +22,12 @@
             "lon": 103.76644590710862,
             "operationalFlow": "pick_up_warehouse_dispatch_and_delivery",
             "stage": "to_dispatch",
-            "address" : "456 west avenue",
-            "assignedTeams": [1,2,3]
+            "address": "456 west avenue",
+            "assignedTeams": [
+                1,
+                2,
+                3
+            ]
         },
         "4": {
             "merchant": "orderD",
@@ -31,8 +35,24 @@
             "lon": 103.76644590710862,
             "operationalFlow": "pick_up_warehouse_dispatch_and_delivery",
             "stage": "to_dispatch",
-            "address" : "324 mountain top road",
-            "assignedDrivers" : [2]
+            "address": "324 mountain top road",
+            "assignedDrivers": [
+                2
+            ]
+        }
+    },
+    "operationalFlows": {
+        "1": {
+            "code": "pick_up_and_delivery",
+            "title": "Pickup and delivery"
+        },
+        "2": {
+            "code": "pick_up_dispatch_and_delivery",
+            "title": "Pickup dispatch and delivery"
+        },
+        "3": {
+            "code": "pick_up_warehouse_dispatch_and_delivery",
+            "title": "Pickup warehouse dispatch and deliver"
         }
     }
 }

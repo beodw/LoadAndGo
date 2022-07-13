@@ -14,9 +14,9 @@ class NotYetImplemented extends StatelessWidget {
         animatedTexts: [
           TyperAnimatedText('Not Yet Implemented.',
               textStyle: TextStyle(
-                  color: Colors.black.withOpacity(0.5),
+                  color: Colors.black.withOpacity(0.3),
                   fontWeight: FontWeight.w100,
-                  fontSize: 25),
+                  fontSize: 15),
               speed: _duration),
         ],
       ),

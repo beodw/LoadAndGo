@@ -2,18 +2,24 @@ part of 'operational_flow_cubit.dart';
 
 abstract class OperationalFlowState extends Equatable {
   final String selectedOperationalFlow;
-  const OperationalFlowState(this.selectedOperationalFlow);
+  final List<OperationalFlow> operationalFlows;
+  const OperationalFlowState(
+      this.selectedOperationalFlow, this.operationalFlows);
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [selectedOperationalFlow, operationalFlows];
 }
 
-class OperationalFlowInitial extends OperationalFlowState {
-  const OperationalFlowInitial({String? newOpertionalFlow})
-      : super('pick_up_and_delivery');
+class OperationalFlowsInit extends OperationalFlowState {
+  OperationalFlowsInit() : super('', []);
 }
 
-class OperationalFlowChanged extends OperationalFlowState {
-  const OperationalFlowChanged(String selectedOperationalFlow)
-      : super(selectedOperationalFlow);
+class OperationalFlowLoading extends OperationalFlowState {
+  OperationalFlowLoading() : super('', []);
+}
+
+class OperationalFlowLoaded extends OperationalFlowState {
+  const OperationalFlowLoaded(
+      {required String selectedFlow, required List<OperationalFlow> flows})
+      : super(selectedFlow, flows);
 }
