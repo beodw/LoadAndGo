@@ -11,23 +11,23 @@
             "lon": 103.849980,
             "operationalFlow": "pick_up_and_delivery",
             "stage": "to_delivery",
-            "address": "123 maple ave"
+            "address": "1A Commonwealth Dr, Singapore "
         },
         "2": {
-            "merchant": "orderB",
+            "merchant": "All Weather Shoes",
             "lat": 1.3311606377711733,
             "lon": 103.7033139540567,
             "operationalFlow": "pick_up_and_delivery",
             "stage": "to_delivery",
-            "address": "231 hill side road"
+            "address": "5B Portsdown Rd, Singapore"
         },
         "3": {
-            "merchant": "orderC",
+            "merchant": "Canada Goose Clothings",
             "lat": 1.386774284868601,
             "lon": 103.76644590710862,
             "operationalFlow": "pick_up_and_delivery",
             "stage": "to_delivery",
-            "address": "456 west avenue",
+            "address": "70 Biopolis St, Singapore",
             "assignedTeams": [
                 1,
                 2,
@@ -35,23 +35,56 @@
             ]
         },
         "4": {
-            "merchant": "orderD",
+            "merchant": "Claudine Restaurant",
             "lat": 1.327824,
             "lon": 103.796987,
             "operationalFlow": "pick_up_dispatch_and_delivery",
-            "stage": "to_warehouse",
-            "address": "324 mountain top road",
+            "stage": "to_delivery",
+            "address": "39C Harding Rd, Singapore",
             "assignedDrivers": [
                 2
             ]
         },
         "5": {
-            "merchant": "orderD",
+            "merchant": "Tanglin Halt Food Centre",
+            "lat": 1.305611,
+            "lon": 103.814704,
+            "operationalFlow": "pick_up_dispatch_and_delivery",
+            "stage": "to_dispatch",
+            "address": "40 Harding Rd, Singapore",
+            "assignedDrivers": [
+                2
+            ]
+        },
+        "6": {
+            "merchant": "P&G Innovation Centre",
+            "lat": 1.304999,
+            "lon": 103.821177,
+            "operationalFlow": "pick_up_warehouse_dispatch_and_delivery",
+            "stage": "to_warehouse",
+            "address": "2 Ayer Rajah Crescent, Singapore",
+            "assignedDrivers": [
+                2
+            ]
+        },
+        "7": {
+            "merchant": "Leedon Residence",
             "lat": 1.377271,
             "lon": 103.736911,
             "operationalFlow": "pick_up_warehouse_dispatch_and_delivery",
-            "stage": "to_warehouse",
-            "address": "324 mountain top road",
+            "stage": "to_delivery",
+            "address": "12 Leedon Heights, Singapore",
+            "assignedDrivers": [
+                2
+            ]
+        },
+        "8": {
+            "merchant": "ABB Pte Ltd",
+            "lat": 1.2943740395541936,
+            "lon": 103.78857914618533,
+            "operationalFlow": "pick_up_warehouse_dispatch_and_delivery",
+            "stage": "to_dispatch",
+            "address": "2 Ayer Rajah Crescent, Singapore",
             "assignedDrivers": [
                 2
             ]
@@ -84,7 +117,7 @@
         },
         "3": {
             "code": "pick_up_warehouse_dispatch_and_delivery",
-            "title": "Pickup warehouse dispatch and deliver",
+            "title": "Pickup warehouse dispatch and delivery",
             "stages": [
                 {
                     "code": "to_warehouse",

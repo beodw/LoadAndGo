@@ -24,4 +24,7 @@ const BorderRadius defaultRadius = BorderRadius.all(Radius.circular(20));
 ///App theme
 final ThemeData appTheme = ThemeData(
   primaryColor: primaryColor,
+  // scrollbarTheme: const ScrollbarThemeData().copyWith(
+  //   thumbColor: MaterialStateProperty.all(secondaryColor),
+  // ),
 );

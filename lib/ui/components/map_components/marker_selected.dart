@@ -34,11 +34,16 @@ class MarkerSelected extends StatelessWidget {
             children: [
               Text('$numSelected tasks selected',
                   style: const TextStyle(
+                    fontSize: 12,
                     color: Colors.white,
                   )),
+              const SizedBox(
+                width: 7,
+              ),
               InkWell(
                 child: const Icon(
                   Icons.close,
+                  size: 15,
                   color: Colors.white,
                 ),
                 onTap: () => clearSelected(),

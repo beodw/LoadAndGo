@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lng/config/palette.dart';
@@ -9,26 +8,33 @@ import 'package:lng/ui/components/button_component/button.dart';
 import 'package:lng/ui/components/right_hand_controls/drop_down_tile.dart';
 import 'package:lng/ui/components/right_hand_controls/search_input.dart';
 import '../../../models/Orders/order.dart';
-import '../popups/assign_tasks_popup.dart';
+
 import 'tab_button.dart';
 import 'dropdown.dart';
 
 class RightHandControls extends StatefulWidget {
-  const RightHandControls({Key? key}) : super(key: key);
+  final Function showCustomDialog;
+  const RightHandControls({Key? key, required this.showCustomDialog})
+      : super(key: key);
 
   @override
   State<RightHandControls> createState() => _RightHandControlsState();
 }
 
 class _RightHandControlsState extends State<RightHandControls> {
+  TextStyle DropDownTextStyle = const TextStyle(
+    fontSize: 11,
+    fontWeight: FontWeight.w200,
+  );
   @override
   Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.of(context).size;
     return BlocBuilder<OperationalFlowCubit, OperationalFlowState>(
       builder: (operationalFlowcontext, operationalFlowState) {
         return BlocBuilder<OrdersCubit, OrdersState>(
             builder: (ordersContext, orderState) {
           return Container(
-            width: 300,
+            width: screenSize.width / 4.5,
             padding: const EdgeInsets.only(right: 15, left: 15, top: 8),
             child: Column(
               children: [
@@ -59,9 +65,10 @@ class _RightHandControlsState extends State<RightHandControls> {
                         child: CustomButton(
                           text: 'Assign Tasks',
                           onTap: () {
-                            showDialog(
-                                context: context,
-                                builder: (context) => const AssignTasksPopUP());
+                            widget.showCustomDialog();
+                            // showDialog(
+                            //     context: context,
+                            //     builder: (context) => const AssignTasksPopUP());
                           },
                         ),
                       ),
@@ -85,8 +92,8 @@ class _RightHandControlsState extends State<RightHandControls> {
                       },
                       isExpanded: flow.code ==
                           operationalFlowState.selectedOperationalFlow,
-                      title: Text(flow.title),
-                      subtitle: const Text('120 Tasks'),
+                      title: Text(flow.title, style: DropDownTextStyle),
+                      subtitle: Text('120 Tasks', style: DropDownTextStyle),
                       children: [
                         for (Map stage in flow.stages)
                           ExpansionTile(
@@ -94,16 +101,20 @@ class _RightHandControlsState extends State<RightHandControls> {
                               decoration: BoxDecoration(
                                   color: stage['code'] == 'to_delivery'
                                       ? Colors.purple
-                                      : Colors.cyan,
+                                      : stage['code'] == 'to_warehouse'
+                                          ? Colors.blue
+                                          : Colors.cyan,
                                   borderRadius: const BorderRadius.all(
                                       Radius.circular(10))),
-                              width: 20,
-                              height: 20,
+                              width: 15,
+                              height: 15,
                             ),
-                            title: Text(stage['title']),
-                            subtitle: const Text('25 Tasks'),
+                            title:
+                                Text(stage['title'], style: DropDownTextStyle),
+                            subtitle:
+                                Text('25 Tasks', style: DropDownTextStyle),
                             children: [
-                              // List tile for select all tile
+                              // List tile for "select all" tile
                               DropDownTile(
                                 leadingIcon: const Icon(
                                   Icons.format_list_bulleted,
@@ -136,6 +147,7 @@ class _RightHandControlsState extends State<RightHandControls> {
                                           .toggleSelectedOrder(order.id);
                                     },
                                     selected: order.isSelected,
+                                    merchant: order.merchant,
                                     text: order.address,
                                   ),
                             ],

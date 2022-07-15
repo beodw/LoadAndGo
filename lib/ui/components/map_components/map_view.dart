@@ -134,7 +134,7 @@ class _MapViewState extends State<MapView> {
                       const SizedBox(
                         height: 10,
                       ),
-                      MapSearchInput()
+                      const MapSearchInput()
                     ],
                   ),
                 ),

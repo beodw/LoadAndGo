@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lng/cubit/operational_flow_cubit.dart';
 import 'package:lng/cubit/orders_cubit.dart';
 import '../../../cubit/routes_cubit.dart';
+import '../../components/popups/assign_tasks_popup.dart';
+import '../../components/popups/dialog_bg.dart';
 import '../../screens/admin_screens/manage_orders.dart';
 import '../../components/side_bar_component/side_bar.dart';
 import '../../screens/not_yet_implemented.dart';
@@ -17,17 +19,22 @@ class BaseWebLayout extends StatefulWidget {
 
 class _BaseWebLayoutState extends State<BaseWebLayout> {
   String currentRoute = '/';
+  bool dialogOpen = false;
 
-  Map routes = {
-    '/orders': const ManageOrdersScreen(),
-    '/merchants': const NotYetImplemented(),
-    '/fleet': const NotYetImplemented(),
-    '/teams': const NotYetImplemented(),
-    '/assigned_orders': const NotYetImplemented(),
-    '/dashboard': const NotYetImplemented(),
-  };
   @override
   Widget build(BuildContext context) {
+    Map routes = {
+      '/orders': ManageOrdersScreen(
+          showCustomDialog: () => setState(() {
+                dialogOpen = true;
+              })),
+      '/merchants': const NotYetImplemented(),
+      '/fleet': const NotYetImplemented(),
+      '/teams': const NotYetImplemented(),
+      '/assigned_orders': const NotYetImplemented(),
+      '/dashboard': const NotYetImplemented(),
+    };
+
     return Stack(
       fit: StackFit.expand,
       alignment: AlignmentDirectional.centerStart,
@@ -49,6 +56,17 @@ class _BaseWebLayoutState extends State<BaseWebLayout> {
           ),
         ),
         const SideBar(),
+        if (dialogOpen)
+          DialogBG(
+            dialog: AssignTasksPopUP(
+              closeDialog: () => setState(() {
+                dialogOpen = false;
+              }),
+            ),
+            onTap: () => setState(() {
+              dialogOpen = false;
+            }),
+          ),
       ],
     );
   }

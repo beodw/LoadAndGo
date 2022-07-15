@@ -4,6 +4,7 @@ import 'package:lng/cubit/routes_cubit.dart';
 import 'side_bar_tile.dart';
 import 'side_bar_toggle_button.dart';
 import '../../../config/palette.dart';
+import 'dart:math';
 
 class SideBar extends StatefulWidget {
   const SideBar({Key? key}) : super(key: key);
@@ -57,12 +58,15 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin {
       ),
       Material(
         shape: const CircleBorder(),
-        child: IconButton(
-          onPressed: () {},
-          icon: Icon(
-            Icons.logout_outlined,
-            size: defaultIconSizeLg,
-            color: iconPrimaryColor,
+        child: Transform.rotate(
+          angle: 180 * pi / 180,
+          child: IconButton(
+            onPressed: () {},
+            icon: Icon(
+              Icons.logout_outlined,
+              size: defaultIconSizeLg,
+              color: Colors.red[600],
+            ),
           ),
         ),
       ),
