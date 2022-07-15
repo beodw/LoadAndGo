@@ -85,7 +85,7 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin {
                 Align(
                   alignment: Alignment.topCenter,
                   child: Column(children: [
-                    Text(
+                    const Text(
                       'LnG',
                       style: TextStyle(
                         color: secondaryColor,

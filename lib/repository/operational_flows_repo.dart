@@ -1,14 +1,10 @@
-import 'dart:convert';
-import 'package:flutter/services.dart';
 import '../models/OperationalFlows/operational_flow.dart';
+import '../utils/load_json.dart';
 
 class OperationalFlowsRepo {
   ///Function to get orders returns a List of Order objects
   Future<List<OperationalFlow>> fetchFlows() async {
-    //Load data from dummy_data.json file.
-    //@todo create backend with firebase so operational flows can be loaded in batches from database.
-    dynamic data = await rootBundle.loadString('dummy_data.json');
-    data = jsonDecode(data);
+    Map data = await loadData();
 
     //create map corresponding to loaded json data
     Map<String, dynamic> flows = data['operationalFlows'];
@@ -16,9 +12,13 @@ class OperationalFlowsRepo {
     //Generate a list of flow objects from map
     List<OperationalFlow> result = [];
     for (String key in flows.keys) {
+      // Cast imported stages from List<dynamic> to List<String>
+      List<Map> stages = flows[key]['stages'].cast<Map>();
       OperationalFlow flow = OperationalFlow(
+        id: key,
         code: flows[key]['code'],
         title: flows[key]['title'],
+        stages: stages,
       );
       result.add(flow);
     }

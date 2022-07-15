@@ -1,5 +1,13 @@
 class OperationalFlow {
+  final String id;
   final String code;
   final String title;
-  OperationalFlow({required this.code, required this.title});
+  final List<Map> stages;
+
+  OperationalFlow({
+    required this.id,
+    required this.code,
+    required this.title,
+    required this.stages,
+  });
 }

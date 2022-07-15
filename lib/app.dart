@@ -10,6 +10,8 @@ import 'config/palette.dart';
 import 'cubit/routes_cubit.dart';
 import 'cubit/operational_flow_cubit.dart';
 import 'repository/order_repo.dart';
+import 'repository/merchants_repo.dart';
+import 'cubit/merchants_cubit.dart';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
@@ -36,6 +38,11 @@ class App extends StatelessWidget {
               create: (context) => OrdersCubit(
                 orderRepo: OrderRepo(),
               )..getOrders(),
+            ),
+            BlocProvider(
+              create: (context) => MerchantsCubit(
+                merchantRepo: MerchantsRepo(),
+              )..getMerchants(),
             ),
           ],
           child: kIsWeb ? const BaseWebLayout() : const BaseMobileLayout(),

@@ -24,7 +24,7 @@ class SideBarTile extends StatelessWidget {
   Widget build(BuildContext context) {
     Icon leadingIcon = Icon(
       icon,
-      color: iconPrimaryColor,
+      color: isSelected ? Colors.white : iconPrimaryColor,
       size: defaultIconSizeLg,
     );
     dynamic tileText = sideBarIsOpen
@@ -37,17 +37,18 @@ class SideBarTile extends StatelessWidget {
           )
         : Icon(
             icon,
-            color: iconPrimaryColor,
+            color: isSelected ? Colors.white : iconPrimaryColor,
             size: defaultIconSizeLg,
           );
     return Material(
       color: transparent,
       type: MaterialType.canvas,
       child: ListTile(
+        textColor: isSelected ? Colors.white : Colors.black,
         shape: RoundedRectangleBorder(borderRadius: roundedCorners),
         tileColor: isSelected ? sideBarButtonSelectedColor : null,
         hoverColor: onHoverColor,
-        iconColor: Colors.black,
+        iconColor: isSelected ? Colors.white : Colors.black,
         onTap: onPressed,
         title: tileText,
         leading: sideBarIsOpen ? leadingIcon : null,

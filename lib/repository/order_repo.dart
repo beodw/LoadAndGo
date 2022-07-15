@@ -1,14 +1,10 @@
-import 'dart:convert';
-import 'package:flutter/services.dart';
+import 'package:lng/utils/load_json.dart';
 import '../models/Orders/order.dart';
 
 class OrderRepo {
   ///Function to get orders returns a List of Order objects
   Future<List<Order>> fetchOrders() async {
-    //Load data from dummy_data.json file.
-    //@todo create backend with firebase so orders can be loaded in batches from database.
-    dynamic data = await rootBundle.loadString('dummy_data.json');
-    data = jsonDecode(data);
+    Map data = await loadData();
 
     //create map corresponding to loaded json data
     Map<String, dynamic> orders = data['orders'];

@@ -1,18 +1,23 @@
 {
+    "merchants": [
+        "Water Bottle Seller",
+        "All Weather Shoes",
+        "Canada Goose Clothings"
+    ],
     "orders": {
         "1": {
             "merchant": "Water Bottle Seller",
             "lat": 1.289440,
             "lon": 103.849980,
             "operationalFlow": "pick_up_and_delivery",
-            "stage": "to_warehouse",
+            "stage": "to_delivery",
             "address": "123 maple ave"
         },
         "2": {
             "merchant": "orderB",
             "lat": 1.3311606377711733,
             "lon": 103.7033139540567,
-            "operationalFlow": "pick_up_dispatch_and_delivery",
+            "operationalFlow": "pick_up_and_delivery",
             "stage": "to_delivery",
             "address": "231 hill side road"
         },
@@ -20,8 +25,8 @@
             "merchant": "orderC",
             "lat": 1.386774284868601,
             "lon": 103.76644590710862,
-            "operationalFlow": "pick_up_warehouse_dispatch_and_delivery",
-            "stage": "to_dispatch",
+            "operationalFlow": "pick_up_and_delivery",
+            "stage": "to_delivery",
             "address": "456 west avenue",
             "assignedTeams": [
                 1,
@@ -31,10 +36,21 @@
         },
         "4": {
             "merchant": "orderD",
-            "lat": 1.386774284868601,
-            "lon": 103.76644590710862,
+            "lat": 1.327824,
+            "lon": 103.796987,
+            "operationalFlow": "pick_up_dispatch_and_delivery",
+            "stage": "to_warehouse",
+            "address": "324 mountain top road",
+            "assignedDrivers": [
+                2
+            ]
+        },
+        "5": {
+            "merchant": "orderD",
+            "lat": 1.377271,
+            "lon": 103.736911,
             "operationalFlow": "pick_up_warehouse_dispatch_and_delivery",
-            "stage": "to_dispatch",
+            "stage": "to_warehouse",
             "address": "324 mountain top road",
             "assignedDrivers": [
                 2
@@ -44,15 +60,45 @@
     "operationalFlows": {
         "1": {
             "code": "pick_up_and_delivery",
-            "title": "Pickup and delivery"
+            "title": "Pickup and delivery",
+            "stages": [
+                {
+                    "code": "to_delivery",
+                    "title": "To Delivery"
+                }
+            ]
         },
         "2": {
             "code": "pick_up_dispatch_and_delivery",
-            "title": "Pickup dispatch and delivery"
+            "title": "Pickup dispatch and delivery",
+            "stages": [
+                {
+                    "code": "to_dispatch",
+                    "title": "To Dispatch"
+                },
+                {
+                    "code": "to_delivery",
+                    "title": "To Delivery"
+                }
+            ]
         },
         "3": {
             "code": "pick_up_warehouse_dispatch_and_delivery",
-            "title": "Pickup warehouse dispatch and deliver"
+            "title": "Pickup warehouse dispatch and deliver",
+            "stages": [
+                {
+                    "code": "to_warehouse",
+                    "title": "To Warehouse"
+                },
+                {
+                    "code": "to_dispatch",
+                    "title": "To Dispatch"
+                },
+                {
+                    "code": "to_delivery",
+                    "title": "To Delivery"
+                }
+            ]
         }
     }
 }

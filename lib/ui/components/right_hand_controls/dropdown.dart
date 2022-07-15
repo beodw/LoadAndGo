@@ -252,31 +252,10 @@ class DropDownState extends State<DropDown>
     super.dispose();
   }
 
-  void _closePanel() {
-    if (_isExpanded) {
-      _controller.reverse();
-    } else {
-      _controller.forward();
-      print('title');
-    }
+  void _closePanel() =>
+      widget.isExpanded ? _controller.forward() : _controller.reverse();
 
-    // setState(() {
-    //   _isExpanded = !_isExpanded;
-
-    //   PageStorage.of(context)?.writeState(context, _isExpanded);
-    // });
-    // widget.onExpansionChanged?.call(_isExpanded);
-  }
-
-  void _handleTap() {
-    onTap();
-    // _controller.forward().then((value) {
-    //   setState(() => _isExpanded = !_isExpanded);
-    // });
-
-    // PageStorage.of(context)?.writeState(context, _isExpanded);
-    // widget.onExpansionChanged?.call(_isExpanded);
-  }
+  void _handleTap() => onTap();
 
   // Platform or null affinity defaults to trailing.
   ListTileControlAffinity _effectiveAffinity(

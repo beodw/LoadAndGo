@@ -5,10 +5,12 @@ import 'package:flutter_map/plugin_api.dart'; // Only import if required functio
 import 'package:latlong2/latlong.dart';
 import 'package:lng/cubit/operational_flow_cubit.dart';
 import 'package:lng/cubit/orders_cubit.dart';
+import 'package:lng/ui/components/map_components/map_controls/search_input.dart';
 import 'package:lng/ui/components/map_components/marker_selected.dart';
 
 import '../../../config/palette.dart';
 import '../../../models/Orders/order.dart';
+import 'map_controls/zoom_controls.dart';
 
 class MapView extends StatefulWidget {
   const MapView({Key? key}) : super(key: key);
@@ -21,9 +23,37 @@ class _MapViewState extends State<MapView> {
   double initLat = 1.3521;
   double initLon = 103.8198;
   int numSelected = 0;
+  double zoom = 12.0;
+  LatLng center = LatLng(0, 0);
+  late final MapController mapController;
+
+  @override
+  void initState() {
+    super.initState();
+    mapController = MapController();
+  }
+
+  void zoomIn() {
+    zoom += .25;
+    mapController.move(center, zoom);
+  }
+
+  void zoomOut() {
+    zoom -= .25;
+    mapController.move(center, zoom);
+  }
 
   @override
   Widget build(BuildContext context) {
+    // Streamn listener for map events
+    mapController.mapEventStream.listen((event) {
+      if (event.source.name != 'mapController') {
+        center = event.center;
+        zoom = event.zoom;
+      }
+    });
+    // Set map center at init lat and lon.
+    center = LatLng(initLat, initLon);
     return BlocBuilder<OrdersCubit, OrdersState>(
         builder: (ordersCubitContext, ordersState) {
       return BlocBuilder<OperationalFlowCubit, OperationalFlowState>(
@@ -37,9 +67,10 @@ class _MapViewState extends State<MapView> {
               alignment: Alignment.bottomCenter,
               children: [
                 FlutterMap(
+                  mapController: mapController,
                   options: MapOptions(
                     center: LatLng(initLat, initLon),
-                    zoom: 12.0,
+                    zoom: zoom,
                   ),
                   layers: [
                     TileLayerOptions(
@@ -76,8 +107,8 @@ class _MapViewState extends State<MapView> {
                                         : order.stage == 'to_warehouse'
                                             ? Colors.blue
                                             : order.stage == 'to_delivery'
-                                                ? Colors.green
-                                                : Colors.purple,
+                                                ? Colors.purple
+                                                : Colors.green,
                                     size: 30.0,
                                   ),
                                 ),
@@ -91,11 +122,22 @@ class _MapViewState extends State<MapView> {
                     numSelected: ordersState.numSelected,
                     clearSelected: () {
                       context.read<OrdersCubit>().clearSelected();
-                      // setState(() {
-                      //   numSelected = 0;
-                      // });
                     },
-                  )
+                  ),
+                Positioned(
+                  right: 5,
+                  bottom: 20,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      ZoomControls(zoomInFunc: zoomIn, zoomOutFunc: zoomOut),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      MapSearchInput()
+                    ],
+                  ),
+                ),
               ],
             ),
           );

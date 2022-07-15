@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 /// Colors definitions
 Color primaryColor = Colors.white.withOpacity(0.75);
-Color secondaryColor = Colors.cyan;
-Color onHoverColor = Colors.grey.withOpacity(0.5);
-Color sideBarButtonSelectedColor = Colors.grey.withOpacity(0.25);
+const Color secondaryColor = Colors.cyan;
+Color onHoverColor = Colors.grey.withOpacity(0.15);
+Color sideBarButtonSelectedColor = Colors.cyan.withOpacity(0.75);
 Color transparent = Colors.transparent;
 Color iconPrimaryColor = Colors.black.withOpacity(0.5);
 Color iconSecondaryColor = Colors.black;

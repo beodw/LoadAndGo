@@ -18,6 +18,14 @@ class MarkerSelected extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.5),
+              spreadRadius: 1,
+              blurRadius: 7,
+              // offset: Offset(0, 3),
+            ),
+          ],
           color: secondaryColor,
           borderRadius: const BorderRadius.all(Radius.circular(30)),
         ),

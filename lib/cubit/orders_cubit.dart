@@ -19,6 +19,24 @@ class OrdersCubit extends Cubit<OrdersState> {
     emit(OrdersLoaded(loadedOrders: loadedOrders, numSelected: 0));
   }
 
+  //Function to set a list of orders to selected
+  void selectAll(List<String> idList) {
+    int newNumSelected = state.numSelected;
+    for (String id in idList) {
+      for (Order order in state.orders) {
+        if (order.id == id) {
+          if (!order.isSelected) {
+            order.isSelected = true;
+            newNumSelected += 1;
+          }
+        }
+      }
+    }
+    OrdersLoaded newState =
+        OrdersLoaded(loadedOrders: state.orders, numSelected: newNumSelected);
+    emit(newState);
+  }
+
   //Function to set an order to selected or unselected
   void toggleSelectedOrder(String id) {
     //search for specified order based on id and toggle its state

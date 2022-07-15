@@ -15,13 +15,21 @@ class OperationalFlowCubit extends Cubit<OperationalFlowState> {
   OperationalFlowCubit({required this.flowRepo})
       : super(OperationalFlowsInit());
 
-  void setSelectedOperationalFlow(String operationalFlow) =>
-      emit(OperationalFlowLoaded(
-          selectedFlow: operationalFlow, flows: state.operationalFlows));
+  void setSelectedOperationalFlow(String operationalFlow) => emit(
+        OperationalFlowLoaded(
+          selectedFlow: operationalFlow,
+          flows: state.operationalFlows,
+        ),
+      );
 
   void getFlows() async {
     emit(OperationalFlowLoading());
     final List<OperationalFlow> flows = await flowRepo.fetchFlows();
-    emit(OperationalFlowLoaded(selectedFlow: flows.first.code, flows: flows));
+    emit(
+      OperationalFlowLoaded(
+        selectedFlow: flows.first.code,
+        flows: flows,
+      ),
+    );
   }
 }
