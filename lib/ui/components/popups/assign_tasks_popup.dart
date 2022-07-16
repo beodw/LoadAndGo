@@ -182,10 +182,11 @@ class _AssignTasksPopUPState extends State<AssignTasksPopUP> {
                   }
                   if (numSelected < 6) {
                     allPickUpDriversSelected = false;
-                    if (numSelected > 2)
+                    if (numSelected > 2) {
                       pickUpDriverSelected = true;
-                    else
+                    } else {
                       pickUpDriverSelected = false;
+                    }
                   } else {
                     allPickUpDriversSelected = true;
                     pickUpDriverSelected = true;
@@ -267,10 +268,11 @@ class _AssignTasksPopUPState extends State<AssignTasksPopUP> {
                 }
                 if (numSelected < 6) {
                   allDeliveryDriversSelected = false;
-                  if (numSelected > 2)
+                  if (numSelected > 2) {
                     deliveryDriverSelected = true;
-                  else
+                  } else {
                     deliveryDriverSelected = false;
+                  }
                 } else {
                   allDeliveryDriversSelected = true;
                   deliveryDriverSelected = true;

@@ -7,6 +7,7 @@ import 'package:lng/cubit/operational_flow_cubit.dart';
 import 'package:lng/cubit/orders_cubit.dart';
 import 'package:lng/ui/components/map_components/map_controls/search_input.dart';
 import 'package:lng/ui/components/map_components/marker_selected.dart';
+import 'package:lng/ui/components/map_components/table_view_button.dart';
 
 import '../../../config/palette.dart';
 import '../../../models/Orders/order.dart';
@@ -138,6 +139,7 @@ class _MapViewState extends State<MapView> {
                     ],
                   ),
                 ),
+                TableView(onTap: () {}),
               ],
             ),
           );

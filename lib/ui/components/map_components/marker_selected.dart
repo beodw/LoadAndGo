@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lng/config/palette.dart';
 
+/// Widget shown at bottom of screen when marker is selected on map.
 class MarkerSelected extends StatelessWidget {
   final Function clearSelected;
   final int numSelected;

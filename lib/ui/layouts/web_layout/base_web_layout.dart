@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lng/cubit/operational_flow_cubit.dart';
-import 'package:lng/cubit/orders_cubit.dart';
 import '../../../cubit/routes_cubit.dart';
 import '../../components/popups/assign_tasks_popup.dart';
 import '../../components/popups/dialog_bg.dart';
@@ -23,6 +21,7 @@ class _BaseWebLayoutState extends State<BaseWebLayout> {
 
   @override
   Widget build(BuildContext context) {
+    // Routes map links urls to widget.
     Map routes = {
       '/orders': ManageOrdersScreen(
           showCustomDialog: () => setState(() {
@@ -34,7 +33,7 @@ class _BaseWebLayoutState extends State<BaseWebLayout> {
       '/assigned_orders': const NotYetImplemented(),
       '/dashboard': const NotYetImplemented(),
     };
-
+    // Base for map, sidebar, and right hand controls.
     return Stack(
       fit: StackFit.expand,
       alignment: AlignmentDirectional.centerStart,

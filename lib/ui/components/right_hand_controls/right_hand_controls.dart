@@ -22,7 +22,7 @@ class RightHandControls extends StatefulWidget {
 }
 
 class _RightHandControlsState extends State<RightHandControls> {
-  TextStyle DropDownTextStyle = const TextStyle(
+  TextStyle dropDownTextStyle = const TextStyle(
     fontSize: 11,
     fontWeight: FontWeight.w200,
   );
@@ -82,8 +82,9 @@ class _RightHandControlsState extends State<RightHandControls> {
                   Container(
                     margin: const EdgeInsets.only(bottom: 5),
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: Colors.grey, width: 1)),
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(color: Colors.grey, width: 1),
+                    ),
                     child: DropDown(
                       onTap: () {
                         operationalFlowcontext
@@ -92,8 +93,8 @@ class _RightHandControlsState extends State<RightHandControls> {
                       },
                       isExpanded: flow.code ==
                           operationalFlowState.selectedOperationalFlow,
-                      title: Text(flow.title, style: DropDownTextStyle),
-                      subtitle: Text('120 Tasks', style: DropDownTextStyle),
+                      title: Text(flow.title, style: dropDownTextStyle),
+                      subtitle: Text('120 Tasks', style: dropDownTextStyle),
                       children: [
                         for (Map stage in flow.stages)
                           ExpansionTile(
@@ -110,9 +111,9 @@ class _RightHandControlsState extends State<RightHandControls> {
                               height: 15,
                             ),
                             title:
-                                Text(stage['title'], style: DropDownTextStyle),
+                                Text(stage['title'], style: dropDownTextStyle),
                             subtitle:
-                                Text('25 Tasks', style: DropDownTextStyle),
+                                Text('25 Tasks', style: dropDownTextStyle),
                             children: [
                               // List tile for "select all" tile
                               DropDownTile(

@@ -20,6 +20,7 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Material app init.
     return MaterialApp(
       debugShowCheckedModeBanner: debugModeSetting,
       title: 'Load and Go',
@@ -27,25 +28,30 @@ class App extends StatelessWidget {
       home: Scaffold(
         body: MultiBlocProvider(
           providers: [
+            // Routes cubit init
             BlocProvider(
               create: (context) =>
                   RoutesCubit(currentRoute: '/orders')..getRoute(),
             ),
+            // Operational Flows cubit init
             BlocProvider(
               create: (context) =>
                   OperationalFlowCubit(flowRepo: OperationalFlowsRepo())
                     ..getFlows(),
             ),
+            // Orders cubit init
             BlocProvider(
               create: (context) => OrdersCubit(
                 orderRepo: OrderRepo(),
               )..getOrders(),
             ),
+            // Merchants cubit init
             BlocProvider(
               create: (context) => MerchantsCubit(
                 merchantRepo: MerchantsRepo(),
               )..getMerchants(),
             ),
+            // Resources cubit init
             BlocProvider(
               create: (context) => ResourcesCubit(
                 resourcesRepo: ResourcesRepo(),
