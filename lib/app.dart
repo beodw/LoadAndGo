@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lng/cubit/orders_cubit.dart';
 import 'package:lng/repository/operational_flows_repo.dart';
+import 'package:lng/repository/resources_repo.dart';
+import 'cubit/resources_cubit.dart';
 import 'ui/layouts/web_layout/base_web_layout.dart';
 import 'ui/layouts/mobile_layout/base_mobile_layout.dart';
 import 'config/app_settings.dart';
@@ -43,6 +45,11 @@ class App extends StatelessWidget {
               create: (context) => MerchantsCubit(
                 merchantRepo: MerchantsRepo(),
               )..getMerchants(),
+            ),
+            BlocProvider(
+              create: (context) => ResourcesCubit(
+                resourcesRepo: ResourcesRepo(),
+              )..fetchTeams(),
             ),
           ],
           child: kIsWeb ? const BaseWebLayout() : const BaseMobileLayout(),
