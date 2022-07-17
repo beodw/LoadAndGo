@@ -56,6 +56,7 @@ class _AssignTasksPopUPState extends State<AssignTasksPopUP> {
       pickUpTeam[0]['isSelected'] = true;
       pickUpTeam[1]['isSelected'] = true;
     }
+    // Set drivers in delivery team
     if (deliveryTeam.isEmpty) {
       for (Driver driver in resources.deliveryTeam) {
         deliveryTeam.add({'driver': driver, 'isSelected': false});
