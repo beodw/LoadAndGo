@@ -23,7 +23,7 @@ class App extends StatelessWidget {
     // Material app init.
     return MaterialApp(
       debugShowCheckedModeBanner: debugModeSetting,
-      title: 'Load and Go',
+      title: 'Load And Go',
       theme: appTheme,
       home: Scaffold(
         body: MultiBlocProvider(

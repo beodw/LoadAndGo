@@ -20,22 +20,21 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin {
 
   int selectedIndex = 5;
   String? currentRoute;
-
+  // List of icons, titles, and urls representing pages
+  // This is used to render the side bar tiles
   final List<Map> pages = [
     {
       'title': 'Dashboard',
       'icon': Icons.dashboard_outlined,
-      'selected_icon': Icons.dashboard,
       'url': '/dashboard'
     },
     {
       'title': 'Assigned Orders',
-      'icon': Icons.format_shapes,
-      'selected_icon': Icons.dashboard_outlined,
+      'icon': Icons.category_outlined,
       'url': '/assigned_orders'
     },
-    {'title': 'Teams', 'icon': Icons.people_outlined, 'url': '/teams'},
-    {'title': 'Fleet', 'icon': Icons.local_shipping_sharp, 'url': '/fleet'},
+    {'title': 'Teams', 'icon': Icons.groups_outlined, 'url': '/teams'},
+    {'title': 'Fleet', 'icon': Icons.local_shipping_outlined, 'url': '/fleet'},
     {'title': 'Merchants', 'icon': Icons.storefront_sharp, 'url': '/merchants'},
     {'title': 'Orders', 'icon': Icons.pin_drop_sharp, 'url': '/orders'},
   ];

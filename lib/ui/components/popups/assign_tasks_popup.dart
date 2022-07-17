@@ -320,7 +320,7 @@ class _AssignTasksPopUPState extends State<AssignTasksPopUP> {
                   bottom: borderSide, right: borderSide, left: borderSide),
             ),
             child: Scrollbar(
-              isAlwaysShown: true,
+              thumbVisibility: true,
               child: SingleChildScrollView(
                 child: Column(children: [
                   // List of drivers in pickup team.
