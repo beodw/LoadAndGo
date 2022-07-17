@@ -15,4 +15,4 @@ To run the app do the following:
 - Ensure Flutter sdk version 3.0.5, Dart version 2.17.6 and DevTools 2.12.2 or later are installed locally.
 - Download this repo or run git clone
 - Run "flutter pub get", in the root directory of the project, to install the project dependencies
-- Run "flutter run" and wait for the browser window to open or build using "flutter build web"
+- Run "flutter run --release" and wait for the browser window to open or build using "flutter build web"
